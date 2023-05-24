@@ -3,13 +3,14 @@ import speech_recognition as sr
 import pyttsx3
 from maju_skills import MajuSkills
 import os
+
 class Maju:
 
     # Init Maju class
     def __init__(self) -> None:
         self.audio: sr.Recognizer = sr.Recognizer()
         self.machine: Any | pyttsx3.Engine = pyttsx3.init()
-        self.skills: MajuSkills = MajuSkills(self.machine)
+        self.skills: MajuSkills = MajuSkills()
 
         # Initing maju
         self.machine.say("Olá, eu sou a Maju!")
@@ -27,12 +28,16 @@ class Maju:
     def voice_user_command(self) -> None:
         command: str = self.run_command()
         while "tchau" not in command:
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print("Penssando...")
             if 'horas' in command:
                 self.skills.hours()
             if 'piada' in command:
                 self.skills.joke()
             if 'converter' in command:
                 self.skills.convert(command)
+            if 'abrir' in command:
+                pass
             command: str = self.run_command()
         self.skills.goodBye()
 
@@ -46,7 +51,9 @@ class Maju:
             command: str = self.audio.recognize_google(voice, language="pt-BR")
             command: str = command.lower()
             if len(command):
-                if 'maju' in command: command = command.replace("maju", "")
+                if 'maju' in command: 
+                    command = command.replace("maju", "")
+                else: self.listen()
                 return command
             else:
                 self.listen()
