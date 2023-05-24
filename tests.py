@@ -1,9 +1,11 @@
-# from maju_skills import MajuSkills
-# from maju_statements import MajuStatements
+from maju_skills import MajuSkills
+from maju_statements import MajuStatements
 
-# MajuStatements().hours("Que horas são?")
+question = input("Pergunta: ")
 
-import spacy
+MajuStatements().hours(question)
+
+"""import spacy
 
 # Carregar o modelo do Spacy
 nlp = spacy.load("pt_core_news_sm")
@@ -34,7 +36,7 @@ for frase in frases:
     if doc[-1].text == "?":
         print("A frase é uma pergunta.")
     
-    print("---")
+    print("---")"""
 
 
 

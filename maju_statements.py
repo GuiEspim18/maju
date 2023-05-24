@@ -1,4 +1,5 @@
 import spacy
+from typing import *
 
 class MajuStatements:
 
